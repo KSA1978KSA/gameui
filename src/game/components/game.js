@@ -32,6 +32,7 @@ const stateModel_Level1 = [
 ];
 
 let stateModel=[];
+let timerFunction;
 
 
 /*    компонента для опыта
@@ -58,11 +59,7 @@ function Game() {
         set_hook (stateModel_hook_new);
         //console.log(stateModel_hook_new);
 
-        
-        //--- тут делаем проверку на завершение уровня
-        if (JSON.stringify(stateModel_hook)===JSON.stringify(stateModel_Level1)) {
-            alert("Ура! Вы успешно собрали мозаику!!!");
-        }
+
     }
 
     return (
@@ -74,7 +71,8 @@ function Game() {
                         for (let i=0;i<stateModel_hook.length;i++) {                            
                             stateModel_hook[i].rotate = stateModel_Level1[i].rotate;                           
                         };
-                        refresh_all_model();                         
+                        refresh_all_model();   
+                        clearInterval(timerFunction);
                     }   
                 }
                 >Сбросить</button>
@@ -84,7 +82,15 @@ function Game() {
                         for (let i=0;i<stateModel_hook.length;i++) {
                             stateModel_hook[i].rotate = 0;                           
                         };
-                        refresh_all_model();                         
+                        refresh_all_model(); 
+                        timerFunction = setInterval(() => {
+                            //--- тут делаем проверку на завершение уровня
+                            if (JSON.stringify(stateModel_hook)===JSON.stringify(stateModel_Level1)) {
+                                alert("Ура! Вы успешно собрали мозаику!!!");
+                                clearInterval(timerFunction);
+                            }
+                        }
+                        , 1000);                        
                     }   
                 }
                 >Старт</button>
