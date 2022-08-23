@@ -58,9 +58,7 @@ function Game() {
         set_hook (stateModel_hook_new);
         //console.log(stateModel_hook_new);
 
-        console.log ("JSON.stringify(stateModel_hook): " + JSON.stringify(stateModel_hook));
-        console.log ("JSON.stringify(stateModel_Level1): " + JSON.stringify(stateModel_Level1));
-
+        
         //--- тут делаем проверку на завершение уровня
         if (JSON.stringify(stateModel_hook)===JSON.stringify(stateModel_Level1)) {
             alert("Ура! Вы успешно собрали мозаику!!!");
@@ -71,6 +69,16 @@ function Game() {
         <all_style.rootPano>
         <div className='leftPanel'>
             <div className='leftPanel__topPanel'>
+                <button className='buttonClear'
+                    onClick={() => {
+                        for (let i=0;i<stateModel_hook.length;i++) {                            
+                            stateModel_hook[i].rotate = stateModel_Level1[i].rotate;                           
+                        };
+                        refresh_all_model();                         
+                    }   
+                }
+                >Сбросить</button>
+
                 <button className='buttonStart'
                     onClick={() => {
                         for (let i=0;i<stateModel_hook.length;i++) {
