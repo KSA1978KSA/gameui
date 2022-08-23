@@ -1,7 +1,7 @@
 {
   "name": "gameui",
   "version": "0.1.0",
-  "homepage": "https://ksa1978ksa.github.io/react-gh-pages",
+  "homepage": "https://ksa1978ksa.github.io/gameui",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
