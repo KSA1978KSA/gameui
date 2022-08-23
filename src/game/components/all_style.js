@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 
 
+
 //--- сетка главного экрана
-const root = styled.div`    
+const rootPano = styled.div`    
+    display: flex;    
+`;
+
+//--- игровая сетка
+const gamePano = styled.div`       
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     width: 100vh;
     height: 100vh;
-    margin: 0 auto;    
-    padding: 2px;
+    margin: 0 auto;        
     overflow: hidden;
 `;
 
@@ -24,6 +29,7 @@ const puzzle = styled.div`
 
 
 export {
-    root,
+    rootPano,
+    gamePano,
     puzzle
 };

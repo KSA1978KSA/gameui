@@ -40,8 +40,8 @@ function Puzzle ({puzzle, refresh_all_model}) {
                     {
                         <Gradient
                             puzzleColor={puzzle.color}
-                        />
-                    }
+                        />                                                    
+                    }                    
                     </div>
             }
             </div>           
