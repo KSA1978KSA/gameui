@@ -35,12 +35,13 @@ let stateModel=[];
 let timerFunction;
 
 
-/*    компонента для опыта
+/*    
+    Компонента с игровой логикой
 */
 function Game() {
 
     //---- инициализируем первый уровень 
-    stateModel = stateModel_Level1.map (el => (
+    stateModel = stateModel_Level1.map ((el) => (
         {
             rotate : el.rotate,
             color: el.color
@@ -56,10 +57,32 @@ function Game() {
 
     const refresh_all_model = function () {
         const stateModel_hook_new = [...stateModel_hook];//--- передавать нужно обязательно новый экземпляр!!!
-        set_hook (stateModel_hook_new);
-        //console.log(stateModel_hook_new);
+        set_hook (stateModel_hook_new);  
+    }
 
 
+    //---- функция обратного вызова из дочерних компонент-puzzle
+    let rotateFunction = (mouseButton, index)=>{
+
+        let puzzle = stateModel_hook[index];
+
+        if (mouseButton===0) //---- левая кнопка мыши 
+        {               
+            puzzle.rotate += 45;   
+            if (puzzle.rotate===360) {
+                puzzle.rotate = 0;
+            }                                                     
+            refresh_all_model(); 
+        };
+        
+        if (mouseButton===2)  //---- правая кнопка мыши  
+        {               
+            puzzle.rotate -= 45;   
+            if (puzzle.rotate===-45) {
+                puzzle.rotate = 315;
+            }                                                     
+            refresh_all_model(); 
+        }   
     }
 
     return (
@@ -99,10 +122,13 @@ function Game() {
         <div className='centerPanel'>
         <all_style.gamePano>
             { 
-                stateModel_hook.map (puzzle => (
-                    <Puzzle                
-                        puzzle = {puzzle}
-                        refresh_all_model = {refresh_all_model}                
+                stateModel_hook.map ((puzzle,index) => (
+                    <Puzzle 
+                        key={index} //--- ключ нужен для избежания ошибки "Each Child in a List Should Have a Unique 'key' Prop"
+                        rotateFunction = {rotateFunction}   
+                        rotate={puzzle.rotate}   
+                        color={puzzle.color}
+                        index={index}                                
                     />
                 ))
             
