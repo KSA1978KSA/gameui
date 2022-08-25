@@ -1,57 +1,4 @@
 
-
-
-
-.root {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    /* width + margin: 0 auto позволяет выровнять контент по центру через авторазмер отступов margin*/
-    width: 100vh;
-    height: 100vh;
-    margin: 0 auto;
-    /* background-color: red; */   
-    padding: 2px;
-    overflow: hidden;
-}
-
-
-.leftPanel {
-    display: grid;
-    border-radius: 8px 0px 0px 8px;
-    margin-left: 2px;    
-    background-color: rgba(151, 151, 159, 0.218);
-    width: 100%;
-
-    /*align-items: center;/* Для центрирования элемента по перекрёстной оси  */
-    justify-content: center;/* Для центрирования элемента по главной оси  */ 
-}
-
-
-.centerPanel {    
-    flex: 1;   
-    border-style: solid;
-    grid-template-rows: 1fr 1fr;
-    border-color: rgba(107, 107, 107, 0.218);;
-}
-
-.rightPanel {
-    border-radius: 0px 8px 8px 0px;
-    margin-right: 2px;   
-    background-color: rgba(151, 151, 159, 0.218);
-    width: 100%;
-}
-
-.leftPanel__topPanel {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 8px;
-    margin-top: 20px;
-    height: 100px;
-    width: 100%;      
-}
-
-
 .buttonStart {    
     background-color: #7a7c7a; /* Green */
     border: none;
@@ -95,29 +42,6 @@
 }
 
 
-.puzzle__gradient_1 {
-    background: linear-gradient(90deg, rgb(149, 146, 146) 40%,rgb(215, 215, 240) 60%);   
-    height: 100%;
-    width: 100%;
-}
-
-.puzzle__gradient_2 {
-    background: linear-gradient(90deg, rgb(149, 146, 146) 40%,rgb(168, 255, 191) 60%);    
-    height: 100%;
-    width: 100%;
-}
-
-.puzzle__gradient_3 {
-    background: linear-gradient(90deg, rgb(181, 74, 85) 40%,rgb(215, 215, 240) 60%);    
-    height: 100%;
-    width: 100%;
-}
-
-.puzzle__gradient_4 {
-    background: linear-gradient(90deg, rgb(181, 74, 85) 40%,rgb(168, 255, 191) 60%);    
-    height: 100%;
-    width: 100%;
-}
 
 
 .puzzleDegree_0 {
