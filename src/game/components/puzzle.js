@@ -1,6 +1,5 @@
-import "./puzzle.css";
 import {Gradient} from "./gradient.js";
-
+import "./puzzle.css";
 
 function Puzzle ({rotateFunction, rotate, color, index}) {
 

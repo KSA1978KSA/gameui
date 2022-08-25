@@ -1,4 +1,16 @@
+import "./gradient.css";
 
+function Gradient ({puzzleColor}) {
+
+    return (
+        <div className={`gradient_${puzzleColor}`} />
+    );
+}
+
+export {Gradient};
+
+
+/*
 
 function Gradient ({puzzleColor}) {
 
@@ -25,5 +37,5 @@ function Gradient ({puzzleColor}) {
     return ret;
 }
 
+*/
 
-export {Gradient};

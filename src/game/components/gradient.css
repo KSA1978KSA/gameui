@@ -1,0 +1,26 @@
+
+
+
+.gradient_0 {
+    background: linear-gradient(90deg, rgb(149, 146, 146) 40%,rgb(215, 215, 240) 60%);   
+    height: 100%;
+    width: 100%;
+}
+
+.gradient_1 {
+    background: linear-gradient(90deg, rgb(149, 146, 146) 40%,rgb(168, 255, 191) 60%);    
+    height: 100%;
+    width: 100%;
+}
+
+.gradient_2 {
+    background: linear-gradient(90deg, rgb(181, 74, 85) 40%,rgb(215, 215, 240) 60%);    
+    height: 100%;
+    width: 100%;
+}
+
+.gradient_3 {
+    background: linear-gradient(90deg, rgb(181, 74, 85) 40%,rgb(168, 255, 191) 60%);    
+    height: 100%;
+    width: 100%;
+}
