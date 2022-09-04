@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "strict": true,
+         "jsx": "react-jsx"
+    }
+}
+
+
+Для правильной работы TS в CreateReactApp нужно выполнить:
+
+npm i typescript @types/node @types/react @types/react-dom @types/jest

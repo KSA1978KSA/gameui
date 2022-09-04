@@ -1,9 +1,10 @@
+import React from 'react';
 import "./gradient.css";
 
 
 //--- объявляем типы данных передаваемые в компоненту
 type propGradient = {
-    puzzleColor: String
+    puzzleColor: number
 };
 
 //--- Компонент

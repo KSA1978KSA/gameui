@@ -1,4 +1,5 @@
-import {Gradient} from "./gradient.tsx";
+import React from 'react';
+import {Gradient} from "./gradient";
 import "./puzzle.css";
 
 //--- объявляем типы данных передаваемые в компоненту

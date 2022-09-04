@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Puzzle} from "./puzzle.tsx";
-import * as all_style from "./all_style.js";
+import * as all_style from "./all_style";
 import "./runstring.css";
 
 //-------------------------------------

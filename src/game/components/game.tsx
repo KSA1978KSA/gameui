@@ -1,12 +1,28 @@
+import React from 'react';
 import {useState} from 'react';
-import {Puzzle} from "./puzzle.tsx";
+import {Puzzle} from "./puzzle";
 import * as all_style from "./all_style.js";
 import "./runstring.css";
+
+
+/*
+
+Для правильной работы TS в CreateReactApp нужно выполнить:
+
+npm i typescript @types/node @types/react @types/react-dom @types/jest
+
+*/
+
+//--- объявляем типы данных Type Script
+type tStateModelElement = {
+    rotate: number, 
+    color: number
+};
 
 //-------------------------------------
 //--- блок локальный переменных
 //-------------------------------------
-const stateModel_Level = [
+const stateModel_Level: tStateModelElement[] = [
     {rotate: 45, color: 1},
     {rotate: 135, color: 1},
     {rotate: 45, color: 0},
@@ -34,9 +50,9 @@ const stateModel_Level = [
     {rotate: 45, color: 3}
 ];
 
-let stateModel=[];
-let timerGame:{};
-let timerGenerateGame:{};
+let stateModel: tStateModelElement[]=[];
+let timerGame: NodeJS.Timer;
+let timerGenerateGame: NodeJS.Timer;
 let startGame = false;//--- флаг старта игры
 //-------------------------------------
 
@@ -52,14 +68,19 @@ function getRandomInt(max: number, exclude:number[]) {
   }
 
 
+//--- Тип результата функции getExcludeGradientColors
+type tExcludeGradientColors = {
+    excludeColors : number[],
+    rotateNextColor: number
+};
 
   //--- получить не совместимые с указанным цвета
   //--- hElement: предыдущий элемент по горизонтали
   //--- vElement: предыдущий элемент по вертикали
-function getExcludeGradientColors (hElement, vElement) {
+function getExcludeGradientColors (hElement?:tStateModelElement, vElement?:tStateModelElement): tExcludeGradientColors {
     
-    if (vElement==="") {
-        if (hElement!=="") {
+    if (!vElement) {//vElement===""
+        if (hElement) {//hElement!==""
             if ((hElement.rotate===45) || 
             (hElement.rotate===45 + 90 + 90 + 90)){//--- работает правый цвет в градиенте
                 if (hElement.color===0 || hElement.color===2) {
@@ -98,7 +119,7 @@ function getExcludeGradientColors (hElement, vElement) {
     else {
         
 
-        if (hElement==="") {//--- если это первый элемент в строке
+        if (!hElement) {//--- hElement==="" если это первый элемент в строке
             if ((vElement.rotate===45) || 
             (vElement.rotate===45 + 90)){//--- работает правый цвет в градиенте 
                 if (vElement.color===0 || vElement.color===2) {
@@ -134,9 +155,9 @@ function getExcludeGradientColors (hElement, vElement) {
         }
         
 
-        if (hElement!=="") {//--- если слева есть элемент
+        if (hElement) {//--- hElement!=="" если слева есть элемент
 
-            let vExclude = [];
+            let vExclude: number[] = [];
             if ((vElement.rotate===45) || 
                 (vElement.rotate===45 + 90)){//--- работает правый цвет в градиенте 
                 if (vElement.color===0 || vElement.color===2) {
@@ -198,6 +219,11 @@ function getExcludeGradientColors (hElement, vElement) {
             }  
         }
     }
+
+    return {
+        excludeColors : [],
+        rotateNextColor: 0
+    }
 }
 
 
@@ -212,25 +238,25 @@ function GenerateLevelGame(stateModel_hook) {
     stateModel_Level[0].color = getRandomInt(4,[]);
     stateModel_Level[0].rotate = 45;//--- стартовый поворот
 
-    let nextElement = getExcludeGradientColors(stateModel_Level[0], "");
+    let nextElement = getExcludeGradientColors(stateModel_Level[0]);
     stateModel_Level[1].rotate = nextElement.rotateNextColor;
     stateModel_Level[1].color = getRandomInt(4, nextElement.excludeColors);
     
-    nextElement = getExcludeGradientColors(stateModel_Level[1], "");
+    nextElement = getExcludeGradientColors(stateModel_Level[1]);
     stateModel_Level[2].rotate = nextElement.rotateNextColor;
     stateModel_Level[2].color = getRandomInt(4, nextElement.excludeColors);
 
-    nextElement = getExcludeGradientColors(stateModel_Level[2], "");
+    nextElement = getExcludeGradientColors(stateModel_Level[2]);
     stateModel_Level[3].rotate = nextElement.rotateNextColor;
     stateModel_Level[3].color = getRandomInt(4, nextElement.excludeColors);
 
-    nextElement = getExcludeGradientColors(stateModel_Level[3], "");
+    nextElement = getExcludeGradientColors(stateModel_Level[3]);
     stateModel_Level[4].rotate = nextElement.rotateNextColor;
     stateModel_Level[4].color = getRandomInt(4, nextElement.excludeColors);
 
     //--- последующие ряды
     for (let step=1;step<5;step++) {
-        nextElement = getExcludeGradientColors("", stateModel_Level[(step - 1) * 5 + 0]);
+        nextElement = getExcludeGradientColors(undefined, stateModel_Level[(step - 1) * 5 + 0]);
         stateModel_Level[step * 5 + 0].rotate = nextElement.rotateNextColor;
         stateModel_Level[step * 5 + 0].color = getRandomInt(4, nextElement.excludeColors);
 
