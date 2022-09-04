@@ -1,7 +1,13 @@
 import "./gradient.css";
 
-function Gradient ({puzzleColor}) {
 
+//--- объявляем типы данных передаваемые в компоненту
+type propGradient = {
+    puzzleColor: String
+};
+
+//--- Компонент
+function Gradient ({puzzleColor} : propGradient) {
     return (
         <div className={`gradient_${puzzleColor}`} />
     );

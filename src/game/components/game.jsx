@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Puzzle} from "./puzzle.js";
+import {Puzzle} from "./puzzle.tsx";
 import * as all_style from "./all_style.js";
+import "./runstring.css";
 
 //-------------------------------------
 //--- блок локальный переменных
@@ -371,6 +372,13 @@ function Game() {
                         }   
                     }
                     >Старт</button>
+
+                    <div className='runStringWrapper'>
+                        <div className='runString'>
+                            Курочкин Сергей представляет игру Gradients. Суть игры состоит в сопоставлении фрагментов мозаики в единую композицию, которая была показана на момент старта...
+                        </div>
+                    </div>
+
                 </all_style.rootPano__leftPanel_topPanel>
             </all_style.rootPano__leftPanel>
 

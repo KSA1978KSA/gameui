@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 
-import {Game} from "./game/components/game.js";
+import {Game} from "./game/components/game.jsx";
 
 function App() {
   return (
